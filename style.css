@@ -1,0 +1,853 @@
+/* --- СБРОС СТИЛЕЙ --- */
+
+/* Сброс стандартных отступов и размеров */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+
+
+/* --- ОСНОВНОЙ ФОН И ТЕЛО СТРАНИЦЫ --- */
+
+/* Основной стиль тега body */
+body {
+  font-family: 'Arial', sans-serif; /* Шрифт по умолчанию */
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* Градиентный фон */
+  color: #fff; /* Цвет текста */
+  min-height: 100vh; /* Минимальная высота на весь экран */
+  overflow-x: hidden; /* Скрытие горизонтальной прокрутки */
+}
+
+
+
+
+
+/* --- ФОН ЗВЁЗД --- */
+
+/* Контейнер для звёзд */
+.stars {
+  position: fixed; /* Фиксированное позиционирование */
+  top: 0; /* Прижать к верху */
+  left: 0; /* Прижать к левому краю */
+  width: 100%; /* Занимает всю ширину */
+  height: 100%; /* Занимает всю высоту */
+  pointer-events: none; /* Игнорировать клики */
+  z-index: -1; /* Позади всего */
+}
+
+/* Стиль отдельной звезды */
+.star {
+  position: absolute; /* Абсолютное позиционирование внутри .stars */
+  background: #fff; /* Цвет звезды */
+  border-radius: 50%; /* Круглая форма */
+  animation: twinkle var(--duration, 3s) infinite ease-in-out; /* Анимация мерцания */
+}
+
+/* Анимация мерцания звезды */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; } /* Прозрачность в начале и в конце */
+  50% { opacity: 1; } /* Полностью видима в середине */
+}
+
+
+
+
+
+/* --- ОСНОВНОЙ КОНТЕЙНЕР СТРАНИЦ ИГРЫ --- */
+
+/* Основной контейнер */
+.container {
+  max-width: 800px; /* Максимальная ширина */
+  margin: 0 auto; /* Центрирование по горизонтали */
+  padding: 20px; /* Отступы внутри */
+  min-height: 100vh; /* Минимальная высота на весь экран */
+  display: flex; /* Флекс-контейнер */
+  flex-direction: column; /* Вертикальная ориентация */
+  justify-content: center; /* Центрирование по вертикали */
+}
+
+/* --- ОБЩИЕ СТИЛИ СТРАНИЦ --- */
+
+/* Общий стиль для всех страниц */
+.page {
+  display: none; /* Скрыта по умолчанию */
+  animation: fadeIn 0.5s ease-in-out; /* Анимация появления */
+}
+
+/* Стиль активной страницы */
+.page.active {
+  display: block; /* Показывается */
+}
+
+/* Анимация появления страницы */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); } /* Начальное состояние */
+  to { opacity: 1; transform: translateY(0); } /* Конечное состояние */
+}
+
+
+
+
+
+/* --- СТРАНИЦА АВТОРИЗАЦИИ --- */
+
+/* Форма авторизации */
+.auth-form {
+  text-align: center; /* Центрирование текста */
+  background: rgba(0, 0, 30, 0.7); /* Полупрозрачный фон */
+  padding: 40px; /* Внутренние отступы */
+  border-radius: 15px; /* Скруглённые углы */
+  backdrop-filter: blur(10px); /* Эффект размытия фона */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая белая граница */
+}
+
+/* Заголовок формы авторизации */
+.auth-form h1 {
+  font-size: 2.5em; /* Размер шрифта */
+  margin-bottom: 30px; /* Отступ снизу */
+  color: #fff; /* Цвет текста */
+}
+
+/* Группа ввода имени */
+.input-group {
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Поле ввода имени */
+.input-group input {
+  width: 100%; /* Полная ширина */
+  padding: 15px; /* Внутренние отступы */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Светлая граница */
+  border-radius: 8px; /* Скруглённые углы */
+  background: rgba(0, 0, 20, 0.5); /* Полупрозрачный фон */
+  color: white; /* Цвет текста */
+  font-size: 16px; /* Размер шрифта */
+  transition: all 0.3s ease; /* Плавные переходы */
+}
+
+/* Стиль поля ввода при фокусе */
+.input-group input:focus {
+  outline: none; /* Убираем стандартную обводку */
+  border-color: #64b5f6; /* Цвет границы при фокусе */
+  box-shadow: 0 0 15px rgba(100, 181, 246, 0.5); /* Свечение при фокусе */
+}
+
+/* Кнопка начала игры */
+.auth-btn {
+  width: 100%; /* Полная ширина */
+  padding: 15px 20px; /* Внутренние отступы */
+  margin: 10px 0; /* Отступы сверху и снизу */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Светлая граница */
+  border-radius: 8px; /* Скруглённые углы */
+  background: rgba(0, 0, 30, 0.7); /* Полупрозрачный фон */
+  color: white; /* Цвет текста */
+  font-size: 18px; /* Размер шрифта */
+  cursor: pointer; /* Курсор указатель */
+  transition: all 0.3s ease; /* Плавные переходы */
+  backdrop-filter: blur(5px); /* Эффект размытия фона */
+}
+
+/* Стиль кнопки при наведении */
+.auth-btn:hover {
+  background: rgba(100, 181, 246, 0.3); /* Фон при наведении */
+  border-color: #64b5f6; /* Цвет границы при наведении */
+  transform: translateX(5px); /* Сдвиг вправо при наведении */
+}
+
+/* Стиль кнопки при нажатии */
+.auth-btn:active {
+  transform: translateX(0); /* Убираем сдвиг при нажатии */
+}
+
+
+
+
+
+/* --- ГЛАВНОЕ МЕНЮ --- */
+
+/* Контейнер главного меню */
+.main-menu {
+  text-align: center; /* Центрирование текста */
+}
+
+/* Заголовок главного меню */
+.main-menu h1 {
+  font-size: 2em; /* Размер шрифта */
+  margin-bottom: 30px; /* Отступ снизу */
+  color: #fff; /* Цвет текста */
+}
+
+/* Отображение имени игрока */
+.player-name {
+  font-size: 1.5em; /* Размер шрифта */
+  margin-bottom: 30px; /* Отступ снизу */
+  color: #64b5f6; /* Цвет текста */
+}
+
+/* Группа кнопок главного меню */
+.menu-buttons {
+  display: flex; /* Флекс-контейнер */
+  flex-direction: column; /* Вертикальная ориентация */
+  align-items: center; /* Центрирование элементов */
+  gap: 2px; /* Промежуток между кнопками */
+}
+
+/* Кнопка в главном меню */
+.menu-btn {
+  width: 80%; /* 80% ширины родителя */
+  padding: 15px 20px; /* Внутренние отступы */
+  margin: 2px 0; /* Отступы сверху и снизу */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Светлая граница */
+  border-radius: 8px; /* Скруглённые углы */
+  background: rgba(0, 0, 30, 0.7); /* Полупрозрачный фон */
+  color: white; /* Цвет текста */
+  font-size: 18px; /* Размер шрифта */
+  cursor: pointer; /* Курсор указатель */
+  transition: all 0.3s ease; /* Плавные переходы */
+  backdrop-filter: blur(5px); /* Эффект размытия фона */
+}
+
+/* Стиль кнопки главного меню при наведении */
+.menu-btn:hover {
+  background: rgba(100, 181, 246, 0.3); /* Фон при наведении */
+  border-color: #64b5f6; /* Цвет границы при наведении */
+  transform: translateX(5px); /* Сдвиг вправо при наведении */
+}
+
+/* Стиль кнопки главного меню при нажатии */
+.menu-btn:active {
+  transform: translateX(0); /* Убираем сдвиг при нажатии */
+}
+
+
+
+
+
+/* --- СТРАНИЦА ВЫБОРА СЛОЖНОСТИ --- */
+
+/* Контейнер меню выбора сложности */
+.difficulty-menu {
+  text-align: center; /* Центрирование текста */
+  background: rgba(0, 0, 30, 0.7); /* Полупрозрачный фон */
+  padding: 40px; /* Внутренние отступы */
+  border-radius: 15px; /* Скруглённые углы */
+  backdrop-filter: blur(10px); /* Эффект размытия фона */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая белая граница */
+}
+
+/* Заголовок меню выбора сложности */
+.difficulty-menu h2 {
+  font-size: 2em; /* Размер шрифта */
+  margin-bottom: 30px; /* Отступ снизу */
+  color: #fff; /* Цвет текста */
+}
+
+/* Группа кнопок сложности */
+.difficulty-buttons {
+  display: flex; /* Флекс-контейнер */
+  flex-direction: column; /* Вертикальная ориентация */
+  align-items: center; /* Центрирование элементов */
+  gap: 15px; /* Промежуток между кнопками */
+}
+
+/* Кнопка выбора сложности */
+.difficulty-btn {
+  width: 80%; /* 80% ширины родителя */
+  padding: 15px 20px; /* Внутренние отступы */
+  margin: 5px 0; /* Отступы сверху и снизу */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Светлая граница */
+  border-radius: 8px; /* Скруглённые углы */
+  background: rgba(0, 0, 30, 0.7); /* Полупрозрачный фон */
+  color: white; /* Цвет текста */
+  font-size: 18px; /* Размер шрифта */
+  cursor: pointer; /* Курсор указатель */
+  transition: all 0.3s ease; /* Плавные переходы */
+  backdrop-filter: blur(5px); /* Эффект размытия фона */
+}
+
+/* Стиль кнопки сложности при наведении */
+.difficulty-btn:hover {
+  background: rgba(100, 181, 246, 0.3); /* Фон при наведении */
+  border-color: #64b5f6; /* Цвет границы при наведении */
+  transform: translateX(5px); /* Сдвиг вправо при наведении */
+}
+
+/* Стиль кнопки сложности при нажатии */
+.difficulty-btn:active {
+  transform: translateX(0); /* Убираем сдвиг при нажатии */
+}
+
+/* Стиль отключённой кнопки сложности */
+.difficulty-btn.disabled {
+  opacity: 0.5; /* Прозрачность */
+  cursor: not-allowed; /* Курсор запрещён */
+  transform: none !important; /* Убираем сдвиг */
+  background: rgba(100, 100, 100, 0.3) !important; /* Серый фон */
+  border-color: rgba(255, 255, 255, 0.1) !important; /* Серая граница */
+}
+
+/* Стиль отключённой кнопки при наведении */
+.difficulty-btn.disabled:hover {
+  background: rgba(100, 100, 100, 0.3) !important; /* Серый фон */
+  border-color: rgba(255, 255, 255, 0.1) !important; /* Серая граница */
+}
+
+
+
+
+
+/* --- ИГРОВОЕ ПОЛЕ --- */
+
+/* Контейнер игрового поля */
+.game-container {
+  position: fixed; /* Фиксированное позиционирование */
+  top: 50%; /* На середине по вертикали */
+  left: 50%; /* На середине по горизонтали */
+  transform: translate(-50%, -50%); /* Центрирование */
+  width: 900px; /* Ширина */
+  height: 675px; /* Высота */
+  background: rgba(0, 0, 30, 0.7); /* Полупрозрачный фон */
+  border-radius: 15px; /* Скруглённые углы */
+  backdrop-filter: blur(10px); /* Эффект размытия фона */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая белая граница */
+  display: flex; /* Флекс-контейнер */
+  justify-content: center; /* Центрирование содержимого */
+  align-items: center; /* Центрирование содержимого */
+  z-index: 1000; /* Высокий z-index */
+}
+
+/* Поле внутри игрового контейнера */
+.game-field {
+  width: 100%; /* Полная ширина */
+  height: 100%; /* Полная высота */
+  background: rgba(0, 0, 20, 0.3); /* Полупрозрачный фон */
+  border-radius: 15px; /* Скруглённые углы */
+  position: relative; /* Относительное позиционирование */
+  overflow: hidden; /* Скрываем всё, что выходит за границы */
+}
+
+/* Отображение таймера */
+.timer {
+  position: absolute; /* Абсолютное позиционирование */
+  top: 20px; /* Отступ сверху */
+  left: 20px; /* Отступ слева */
+  font-size: 24px; /* Размер шрифта */
+  color: white; /* Цвет текста */
+  z-index: 1002; /* Высокий z-index */
+  background: rgba(0, 0, 0, 0.5); /* Фон с прозрачностью */
+  padding: 10px 15px; /* Внутренние отступы */
+  border-radius: 5px; /* Скруглённые углы */
+}
+
+/* Отображение счёта */
+.score {
+  position: absolute; /* Абсолютное позиционирование */
+  top: 20px; /* Отступ сверху */
+  right: 20px; /* Отступ справа */
+  font-size: 24px; /* Размер шрифта */
+  color: white; /* Цвет текста */
+  z-index: 1002; /* Высокий z-index */
+  background: rgba(0, 0, 0, 0.5); /* Фон с прозрачностью */
+  padding: 10px 15px; /* Внутренние отступы */
+  border-radius: 5px; /* Скруглённые углы */
+}
+
+
+
+
+
+/* --- ЭЛЕМЕНТЫ ИГРЫ "СПАСИ ЗЕМЛЮ" --- */
+
+/* Орбита Земли */
+.orbit {
+  position: absolute; /* Абсолютное позиционирование */
+  top: 50%; /* На середине */
+  left: 50%; /* На середине */
+  width: 420px; /* Ширина */
+  height: 420px; /* Высота */
+  border: 2px dashed rgba(255, 255, 255, 0.3); /* Пунктирная граница */
+  border-radius: 50%; /* Круглая форма */
+  transform: translate(-50%, -50%); /* Центрирование */
+  z-index: 1001; /* Средний z-index */
+}
+
+/* Солнце */
+.sun {
+  position: absolute; /* Абсолютное позиционирование */
+  top: 50%; /* На середине */
+  left: 50%; /* На середине */
+  transform: translate(-50%, -50%); /* Центрирование */
+  width: 140px; /* Ширина */
+  height: 140px; /* Высота */
+  z-index: 1002; /* Высокий z-index */
+  transition: opacity 0.3s ease; /* Плавный переход прозрачности */
+}
+
+/* Изображение солнца */
+.sun img {
+  width: 100%; /* Полная ширина */
+  height: 100%; /* Полная высота */
+  border-radius: 50%; /* Круглая форма */
+}
+
+/* Земля */
+.earth {
+  position: absolute; /* Абсолютное позиционирование */
+  top: 50%; /* На середине */
+  left: 50%; /* На середине */
+  width: 80px; /* Ширина */
+  height: 80px; /* Высота */
+  transform-origin: center; /* Центр вращения */
+  z-index: 1001; /* Средний z-index */
+  transition: opacity 0.3s ease; /* Плавный переход прозрачности */
+}
+
+/* Изображение земли */
+.earth img {
+  width: 100%; /* Полная ширина */
+  height: 100%; /* Полная высота */
+  border-radius: 50%; /* Круглая форма */
+}
+
+/* Астероид */
+.asteroid {
+  position: absolute; /* Абсолютное позиционирование */
+  width: 35px; /* Ширина */
+  height: 35px; /* Высота */
+  z-index: 1003; /* Высокий z-index */
+}
+
+/* Изображение астероида */
+.asteroid img {
+  width: 100%; /* Полная ширина */
+  height: 100%; /* Полная высота */
+}
+
+
+
+
+
+/* --- ЭКРАН ПАУЗЫ --- */
+
+/* Экран паузы */
+.pause-overlay {
+  position: absolute; /* Абсолютное позиционирование */
+  top: 0; /* Прижать к верху */
+  left: 0; /* Прижать к левому краю */
+  width: 100%; /* Полная ширина */
+  height: 100%; /* Полная высота */
+  background: rgba(0, 0, 30, 0.8); /* Полупрозрачный фон */
+  display: flex; /* Флекс-контейнер */
+  flex-direction: column; /* Вертикальная ориентация */
+  justify-content: center; /* Центрирование по вертикали */
+  align-items: center; /* Центрирование по горизонтали */
+  z-index: 1004; /* Высокий z-index */
+}
+
+/* Группа кнопок паузы */
+.pause-buttons {
+  display: flex; /* Флекс-контейнер */
+  flex-direction: column; /* Вертикальная ориентация */
+  gap: 15px; /* Промежуток между кнопками */
+  margin-top: 20px; /* Отступ сверху */
+}
+
+/* Кнопка на экране паузы */
+.pause-btn {
+  padding: 15px 30px; /* Внутренние отступы */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Светлая граница */
+  border-radius: 8px; /* Скруглённые углы */
+  background: rgba(0, 0, 30, 0.7); /* Полупрозрачный фон */
+  color: white; /* Цвет текста */
+  font-size: 18px; /* Размер шрифта */
+  cursor: pointer; /* Курсор указатель */
+  transition: all 0.3s ease; /* Плавные переходы */
+  backdrop-filter: blur(5px); /* Эффект размытия фона */
+}
+
+/* Стиль кнопки паузы при наведении */
+.pause-btn:hover {
+  background: rgba(100, 181, 246, 0.3); /* Фон при наведении */
+  border-color: #64b5f6; /* Цвет границы при наведении */
+}
+
+
+
+
+
+/* --- ТАБЛИЦА РЕЙТИНГА --- */
+
+/* Контейнер таблицы рейтинга */
+.rating-table {
+  background: rgba(0, 0, 30, 0.7); /* Полупрозрачный фон */
+  padding: 30px; /* Внутренние отступы */
+  border-radius: 15px; /* Скруглённые углы */
+  backdrop-filter: blur(10px); /* Эффект размытия фона */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая белая граница */
+}
+
+/* Заголовок таблицы рейтинга */
+.rating-table h2 {
+  font-size: 2em; /* Размер шрифта */
+  margin-bottom: 20px; /* Отступ снизу */
+  color: #fff; /* Цвет текста */
+}
+
+/* Таблица */
+table {
+  width: 100%; /* Полная ширина */
+  border-collapse: collapse; /* Убираем двойные границы */
+  margin-top: 20px; /* Отступ сверху */
+}
+
+/* Ячейки заголовка и данных */
+th, td {
+  padding: 12px; /* Внутренние отступы */
+  text-align: left; /* Выравнивание по левому краю */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Нижняя граница */
+}
+
+/* Ячейка заголовка */
+th {
+  background: rgba(100, 181, 246, 0.2); /* Фон заголовка */
+  color: #64b5f6; /* Цвет текста заголовка */
+}
+
+/* Стиль строки при наведении */
+tr:hover {
+  background: rgba(100, 181, 246, 0.1); /* Фон при наведении */
+}
+
+/* Кнопка "Назад" */
+.back-btn {
+  margin-top: 20px; /* Отступ сверху */
+  padding: 10px 20px; /* Внутренние отступы */
+  background: rgba(255, 255, 255, 0.1); /* Фон */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Граница */
+  color: white; /* Цвет текста */
+  border-radius: 5px; /* Скруглённые углы */
+  cursor: pointer; /* Курсор указатель */
+  transition: all 0.3s ease; /* Плавные переходы */
+}
+
+/* Стиль кнопки "Назад" при наведении */
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.2); /* Фон при наведении */
+}
+
+/* Кнопка очистки рейтинга */
+.clear-btn {
+  margin-top: 10px; /* Отступ сверху */
+  padding: 10px 20px; /* Внутренние отступы */
+  background: rgba(255, 100, 100, 0.2); /* Фон */
+  border: 1px solid rgba(255, 100, 100, 0.3); /* Граница */
+  color: #ff6464; /* Цвет текста */
+  border-radius: 5px; /* Скруглённые углы */
+  cursor: pointer; /* Курсор указатель */
+  transition: all 0.3s ease; /* Плавные переходы */
+}
+
+/* Стиль кнопки очистки при наведении */
+.clear-btn:hover {
+  background: rgba(255, 100, 100, 0.3); /* Фон при наведении */
+}
+
+
+
+
+
+/* --- СТРАНИЦА ПРАВИЛ --- */
+
+/* Контейнер страницы правил */
+.rules-page {
+  background: rgba(0, 0, 30, 0.7); /* Полупрозрачный фон */
+  padding: 30px; /* Внутренние отступы */
+  border-radius: 15px; /* Скруглённые углы */
+  backdrop-filter: blur(10px); /* Эффект размытия фона */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая белая граница */
+}
+
+/* Заголовок страницы правил */
+.rules-page h2 {
+  font-size: 2em; /* Размер шрифта */
+  margin-bottom: 20px; /* Отступ снизу */
+  color: #fff; /* Цвет текста */
+}
+
+/* Контент страницы правил */
+.rules-content {
+  line-height: 1.6; /* Межстрочный интервал */
+}
+
+/* Подзаголовки в правилах */
+.rules-content h3 {
+  color: #64b5f6; /* Цвет текста */
+  margin: 15px 0 10px 0; /* Отступы */
+}
+
+/* Списки в правилах */
+.rules-content ul {
+  padding-left: 20px; /* Отступ слева */
+  margin: 10px 0; /* Отступы сверху и снизу */
+}
+
+/* Элементы списков в правилах */
+.rules-content li {
+  margin: 5px 0; /* Отступы сверху и снизу */
+}
+
+
+
+
+
+/* --- ЭКРАН ОКОНЧАНИЯ ИГРЫ --- */
+
+/* Контейнер экрана окончания игры */
+.end-game-screen {
+  text-align: center; /* Центрирование текста */
+  background: rgba(0, 0, 30, 0.7); /* Полупрозрачный фон */
+  padding: 40px; /* Внутренние отступы */
+  border-radius: 15px; /* Скруглённые углы */
+  backdrop-filter: blur(10px); /* Эффект размытия фона */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая белая граница */
+  color: white; /* Цвет текста */
+}
+
+/* Заголовок результата игры */
+.end-game-screen h2 {
+  font-size: 2.5em; /* Размер шрифта */
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Стиль заголовка при победе */
+.end-game-screen h2.win {
+  color: #4caf50; /* Зелёный цвет */
+}
+
+/* Стиль заголовка при поражении */
+.end-game-screen h2.lose {
+  color: #f44336; /* Красный цвет */
+}
+
+/* Текст с итоговым счётом */
+.end-game-screen p {
+  font-size: 1.5em; /* Размер шрифта */
+  margin-bottom: 30px; /* Отступ снизу */
+}
+
+/* Группа кнопок на экране окончания */
+.end-game-buttons {
+  display: flex; /* Флекс-контейнер */
+  flex-direction: column; /* Вертикальная ориентация */
+  align-items: center; /* Центрирование элементов */
+  gap: 15px; /* Промежуток между кнопками */
+}
+
+
+
+
+
+/* --- ЭЛЕМЕНТЫ ИГРЫ "ПОЯС АСТЕРОИДОВ" --- */
+
+/* НЛО в режиме "Пояс астероидов" */
+.ufo {
+  position: absolute;        /* Позиционирование элемента относительно родителя */
+  width: 120px;              /* Ширина НЛО */
+  height: 36px;              /* Высота НЛО */
+  z-index: 1002;             /* Порядок отображения (выше других элементов) */
+  left: 390px;               /* Начальная позиция по оси X */
+  bottom: 30px;              /* Отступ снизу */
+}
+
+.ufo img {
+  width: 100%;               /* Изображение занимает всю ширину контейнера */
+  height: 100%;              /* Изображение занимает всю высоту контейнера */
+}
+
+/* Астероиды в "Поясе астероидов" */
+.asteroid-belt {
+  position: absolute;        /* Позиционирование элемента относительно родителя */
+  width: 35px;               /* Ширина астероида */
+  height: 35px;              /* Высота астероида */
+  z-index: 1003;             /* Порядок отображения (выше НЛО) */
+  transition: transform 0.05s linear; /* Плавный переход вращения */
+}
+
+.asteroid-belt img {
+  width: 100%;               /* Изображение занимает всю ширину контейнера */
+  height: 100%;              /* Изображение занимает всю высоту контейнера */
+}
+
+/* Алмазы в "Поясе астероидов" */
+.diamond-belt {
+  position: absolute;        /* Позиционирование элемента относительно родителя */
+  width: 35px;               /* Ширина алмаза */
+  height: 35px;              /* Высота алмаза */
+  z-index: 1003;             /* Порядок отображения (выше НЛО) */
+  transition: transform 0.05s linear; /* Плавный переход вращения */
+}
+
+.diamond-belt img {
+  width: 100%;               /* Изображение занимает всю ширину контейнера */
+  height: 100%;              /* Изображение занимает всю высоту контейнера */
+}
+
+/* Снаряд из НЛО в "Поясе астероидов" */
+.ufo-bullet {
+  position: absolute;        /* Позиционирование элемента относительно родителя */
+  width: 10px;               /* Ширина снаряда */
+  height: 10px;              /* Высота снаряда */
+  background-color: red;     /* Цвет заливки снаряда */
+  border-radius: 50%;        /* Форма снаряда — круг */
+  z-index: 1001;             /* Порядок отображения (ниже НЛО и астероидов) */
+}
+
+/* Эффект взрыва при уничтожении астероида */
+.explosion {
+  position: absolute;        /* Позиционирование элемента относительно родителя */
+  width: 50px;               /* Ширина области взрыва */
+  height: 50px;              /* Высота области взрыва */
+  pointer-events: none;      /* Элемент не реагирует на клики */
+  z-index: 1005;             /* Порядок отображения (самый верх) */
+  animation: explode 0.4s ease-out forwards; /* Анимация взрыва */
+}
+
+.explosion-particle {
+  position: absolute;        /* Позиционирование элемента относительно родителя */
+  width: 8px;                /* Ширина частицы */
+  height: 8px;               /* Высота частицы */
+  border-radius: 50%;        /* Форма частицы — круг */
+  background: radial-gradient(circle, #ffff00, #ff6600, #ff0000); /* Градиентный фон (жёлтый → оранжевый → красный) */
+  box-shadow: 0 0 6px #ff6600, 0 0 12px #ff3300; /* Свечение частицы */
+}
+
+/* Анимации для 8 частиц */
+.explosion-particle:nth-child(1) { animation: particle1 0.4s ease-out forwards; } /* Анимация первой частицы */
+.explosion-particle:nth-child(2) { animation: particle2 0.4s ease-out forwards; } /* Анимация второй частицы */
+.explosion-particle:nth-child(3) { animation: particle3 0.4s ease-out forwards; } /* Анимация третьей частицы */
+.explosion-particle:nth-child(4) { animation: particle4 0.4s ease-out forwards; } /* Анимация четвёртой частицы */
+.explosion-particle:nth-child(5) { animation: particle5 0.4s ease-out forwards; } /* Анимация пятой частицы */
+.explosion-particle:nth-child(6) { animation: particle6 0.4s ease-out forwards; } /* Анимация шестой частицы */
+.explosion-particle:nth-child(7) { animation: particle7 0.4s ease-out forwards; } /* Анимация седьмой частицы */
+.explosion-particle:nth-child(8) { animation: particle8 0.4s ease-out forwards; } /* Анимация восьмой частицы */
+
+@keyframes explode {
+  0% { transform: scale(0.5); opacity: 1; }    /* Начальное состояние: уменьшенный и видимый */
+  100% { transform: scale(1.5); opacity: 0; }  /* Конечное состояние: увеличенный и прозрачный */
+}
+
+/* Анимации движения частиц */
+@keyframes particle1 { 0% { transform: translate(21px, 21px) scale(1); opacity: 1; } 100% { transform: translate(0px, -20px) scale(0); opacity: 0; } }
+@keyframes particle2 { 0% { transform: translate(21px, 21px) scale(1); opacity: 1; } 100% { transform: translate(14px, -14px) scale(0); opacity: 0; } }
+@keyframes particle3 { 0% { transform: translate(21px, 21px) scale(1); opacity: 1; } 100% { transform: translate(20px, 0px) scale(0); opacity: 0; } }
+@keyframes particle4 { 0% { transform: translate(21px, 21px) scale(1); opacity: 1; } 100% { transform: translate(14px, 14px) scale(0); opacity: 0; } }
+@keyframes particle5 { 0% { transform: translate(21px, 21px) scale(1); opacity: 1; } 100% { transform: translate(0px, 20px) scale(0); opacity: 0; } }
+@keyframes particle6 { 0% { transform: translate(21px, 21px) scale(1); opacity: 1; } 100% { transform: translate(-14px, 14px) scale(0); opacity: 0; } }
+@keyframes particle7 { 0% { transform: translate(21px, 21px) scale(1); opacity: 1; } 100% { transform: translate(-20px, 0px) scale(0); opacity: 0; } }
+@keyframes particle8 { 0% { transform: translate(21px, 21px) scale(1); opacity: 1; } 100% { transform: translate(-14px, -14px) scale(0); opacity: 0; } }
+
+/* Отключить выделение при двойном клике */
+.game-field {
+  user-select: none;         /* Отключает выделение текста при клике */
+  -webkit-user-select: none; /* Отключает выделение для Safari */
+  -moz-user-select: none;    /* Отключает выделение для Firefox */
+  -ms-user-select: none;     /* Отключает выделение для IE */
+}
+
+
+
+
+
+/* --- ЭЛЕМЕНТЫ ИГРЫ "ЗОЛОТАЯ ЖИЛА" --- */
+
+/* Ящик в "Золотой жиле" */
+.box {
+  position: absolute;        /* Позиционирование элемента относительно родителя */
+  width: 180px;              /* Ширина ящика */
+  height: 160px;             /* Высота ящика */
+  left: 30px;                /* Отступ слева */
+  bottom: 30px;              /* Отступ снизу */
+  z-index: 1000;             /* Порядок отображения (ниже других элементов) */
+}
+
+.box img {
+  width: 100%;               /* Изображение занимает всю ширину контейнера */
+  height: 100%;              /* Изображение занимает всю высоту контейнера */
+}
+
+/* Большие астероиды в "Золотой жиле" */
+.asteroid-big {
+  position: absolute;        /* Позиционирование элемента относительно родителя */
+  width: 60px;               /* Ширина астероида */
+  height: 60px;              /* Высота астероида */
+  z-index: 1003;             /* Порядок отображения (выше других элементов) */
+}
+
+.asteroid-big img {
+  width: 100%;               /* Изображение занимает всю ширину контейнера */
+  height: 100%;              /* Изображение занимает всю высоту контейнера */
+}
+
+/* Золото в "Золотой жиле" */
+.gold-big {
+  position: absolute;        /* Позиционирование элемента относительно родителя */
+  width: 60px;               /* Ширина золота */
+  height: 60px;              /* Высота золота */
+  z-index: 1003;             /* Порядок отображения (выше других элементов) */
+}
+
+.gold-big img {
+  width: 100%;               /* Изображение занимает всю ширину контейнера */
+  height: 100%;              /* Изображение занимает всю высоту контейнера */
+}
+
+/* Анимации для коробки в "Золотой жиле" */
+@keyframes glowGreen {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 0 rgba(0, 255, 0, 0)); /* Начальное состояние: без свечения */
+    transform: scale(1);      /* Начальный размер */
+  }
+  50% {
+    filter: brightness(1.3) drop-shadow(0 0 10px rgba(0, 255, 0, 0.8)); /* Среднее состояние: яркость и зелёное свечение */
+    transform: scale(1.1);    /* Увеличенный размер */
+  }
+  100% {
+    filter: brightness(1) drop-shadow(0 0 0 rgba(0, 255, 0, 0)); /* Конечное состояние: без свечения */
+    transform: scale(1);      /* Начальный размер */
+  }
+}
+
+@keyframes shakeRed {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 0 rgba(255, 0, 0, 0)); /* Начальное состояние: без свечения */
+    transform: translateX(0); /* Начальная позиция */
+  }
+  25% {
+    filter: brightness(1.3) drop-shadow(0 0 10px rgba(255, 0, 0, 0.8)); /* Яркость и красное свечение */
+    transform: translateX(-5px); /* Смещение влево */
+  }
+  50% {
+    filter: brightness(1.3) drop-shadow(0 0 10px rgba(255, 0, 0, 0.8)); /* Яркость и красное свечение */
+    transform: translateX(5px); /* Смещение вправо */
+  }
+  75% {
+    filter: brightness(1.3) drop-shadow(0 0 10px rgba(255, 0, 0, 0.8)); /* Яркость и красное свечение */
+    transform: translateX(-5px); /* Смещение влево */
+  }
+  100% {
+    filter: brightness(1) drop-shadow(0 0 0 rgba(255, 0, 0, 0)); /* Конечное состояние: без свечения */
+    transform: translateX(0); /* Начальная позиция */
+  }
+}
+
+.box.glow-green {
+  animation: glowGreen 0.3s ease; /* Применение анимации зелёного свечения */
+}
+
+.box.shake-red {
+  animation: shakeRed 0.4s ease; /* Применение анимации тряски и красного свечения */
+}

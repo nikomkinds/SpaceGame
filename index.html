@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Космическая Игра</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="container">
+    <!-- Страница авторизации -->
+    <div class="page active" id="authPage">
+      <div class="auth-form">
+        <h1>🚀 КОСМИЧЕСКИЙ АВАНГАРД 🚀</h1>
+        <div class="input-group">
+          <input type="text" id="playerName" placeholder="Введите ваше имя космонавта..." maxlength="20">
+        </div>
+        <button class="auth-btn" onclick="startGame()">НАЧАТЬ МИССИЮ</button>
+      </div>
+    </div>
+    <!-- Главное меню -->
+    <div class="page" id="mainMenu">
+      <div class="main-menu">
+        <h1>КОСМИЧЕСКАЯ ИГРА</h1>
+        <div class="player-name" id="displayName">Космонавт: Аноним</div>
+        <div class="menu-buttons">
+          <button class="menu-btn" onclick="showDifficultyMenu()">Спасти Землю</button>
+          <button class="menu-btn" onclick="showAsteroidsMenu()">Пояс астероидов</button>
+          <button class="menu-btn" onclick="showGoldMenu()">Золотая жила</button>
+          <button class="menu-btn" onclick="showRules()">Правила</button>
+          <button class="menu-btn" onclick="showRating()">Рейтинг</button>
+          <button class="menu-btn" id="soundToggleBtn" onclick="toggleSound()">Выключить звук</button>
+          <button class="menu-btn" onclick="showAuth()">Сменить имя</button>
+        </div>
+      </div>
+    </div>
+    <!-- Меню выбора сложности для "Спасти Землю" -->
+    <div class="page" id="difficultyMenu">
+      <div class="difficulty-menu">
+        <h2>СПАСТИ ЗЕМЛЮ</h2>
+        <div class="difficulty-buttons">
+          <button class="difficulty-btn" onclick="startLevelWithDifficulty('earth', 'normal')">Обычный</button>
+          <button class="difficulty-btn" id="hardBtnEarth" onclick="startLevelWithDifficulty('earth', 'hard')">Сложный</button>
+          <button class="difficulty-btn" onclick="showMainMenu()">В меню</button>
+        </div>
+      </div>
+    </div>
+    <!-- Меню выбора сложности для "Пояс астероидов" -->
+    <div class="page" id="asteroidsMenu">
+      <div class="difficulty-menu">
+        <h2>ПОЯС АСТЕРОИДОВ</h2>
+        <div class="difficulty-buttons">
+          <button class="difficulty-btn" onclick="startLevelWithDifficulty('asteroids', 'normal')">Обычный</button>
+          <button class="difficulty-btn" id="hardBtnAsteroids" onclick="startLevelWithDifficulty('asteroids', 'hard')">Сложный</button>
+          <button class="difficulty-btn" onclick="showMainMenu()">В меню</button>
+        </div>
+      </div>
+    </div>
+    <!-- Меню выбора сложности для "Золотая жила" -->
+    <div class="page" id="goldMenu">
+      <div class="difficulty-menu">
+        <h2>ЗОЛОТАЯ ЖИЛА</h2>
+        <div class="difficulty-buttons">
+          <button class="difficulty-btn" onclick="startLevelWithDifficulty('gold', 'normal')">Обычный</button>
+          <button class="difficulty-btn" id="hardBtnGold" onclick="startLevelWithDifficulty('gold', 'hard')">Сложный</button>
+          <button class="difficulty-btn" onclick="showMainMenu()">В меню</button>
+        </div>
+      </div>
+    </div>
+    <!-- Игровое поле -->
+    <div class="page" id="gamePage">
+      <div class="game-container">
+        <div class="game-field" id="gameField">
+          <div class="orbit" id="orbitElement"></div>
+          <div class="sun" id="sunElement">
+            <img src="./images/sun.png" alt="Солнце" width="140" height="140">
+          </div>
+          <div class="earth" id="earthElement">
+            <img src="./images/earth.png" alt="Земля" width="80" height="80">
+          </div>
+          <div class="ufo" id="ufoElement">
+            <img src="./images/ufo.png" alt="НЛО" width="80" height="24">
+          </div>
+          <div class="box" id="boxElement" style="display: none;">
+            <img src="./images/box.png" alt="Ящик" width="180" height="160">
+          </div>
+          <div class="timer" id="timer">60</div>
+          <div class="score" id="score">0</div>
+          <div class="pause-overlay" id="pauseOverlay" style="display: none;">
+            <h2>ПАУЗА</h2>
+            <div class="pause-buttons">
+              <button class="pause-btn" onclick="resumeGame()">Продолжить</button>
+              <button class="pause-btn" onclick="quitToMenu()">В меню</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Экран окончания игры -->
+    <div class="page" id="endGamePage">
+      <div class="end-game-screen">
+        <h2 id="endGameResult">Поражение</h2>
+        <p>Итоговый счёт: <span id="finalScore">0</span></p>
+        <div class="end-game-buttons">
+          <button class="menu-btn" onclick="restartGame()">Играть снова</button>
+          <button class="menu-btn" onclick="showMainMenu()">В меню</button>
+        </div>
+      </div>
+    </div>
+    <!-- Таблица рейтинга -->
+    <div class="page" id="ratingPage">
+      <div class="rating-table">
+        <h2>🏆 ТАБЛИЦА РЕЗУЛЬТАТОВ</h2>
+        <table id="ratingTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Игрок</th>
+              <th>Режим</th>
+              <th>Очки</th>
+              <th>Время</th>
+              <th>Результат</th>
+            </tr>
+          </thead>
+          <tbody id="ratingBody">
+          </tbody>
+        </table>
+        <button class="clear-btn" onclick="clearRating()">Очистить рейтинг</button>
+        <button class="back-btn" onclick="showMainMenu()">Назад</button>
+      </div>
+    </div>
+    <!-- Страница правил -->
+    <div class="page" id="rulesPage">
+      <div class="rules-page">
+        <h2>📖 ПРАВИЛА ИГРЫ</h2>
+        <div class="rules-content">
+          <h3>Спасти землю</h3>
+          <p>Спасите Землю от столкновения с астероидами! Уничтожайте их кликом ЛКМ, пока они летят. За каждый уничтоженный астероид начисляется 10 баллов. Чтобы победить, продержитесь до конца таймера.</p>
+          <h3>Пояс астероидов</h3>
+          <p>Вы попали в пояс астероидов! Уклоняйте свой космический корабль стрелками вправо и влево, чтобы увернуться. Двойным нажатием ЛКМ можно выстрелить вперёд, чтобы взорвать астероид и получить 20 очков. В потоке астероидов иногда появляются алмазы. Их можно собирать, каждый алмаз даст 50 очков. Чтобы победить, продеритесь до конца таймера.</p>
+          <h3>Золотая жила</h3>
+          <p>Учёные обнаружили новый пояс астероидов с золотом! Соберите все золото в коробку. За каждый золотой астероид начисляется 10 очков. За пропуск одного золотого астероида вы потеряете 30 очков. Так же штраф в 100 очков полагается за попадание простого астероида в коробку. Чтобы победить, продержитесь до конца таймера. Вы проиграете, если счётчик очков уйдёт в минус.</p>
+          <h3>Общие правила</h3>
+          <p>Любую игру можно поставить на паузу, нажав на кнопку 'Esc'.</p>
+          <p>Удачи, космонавт! 🚀</p>
+        </div>
+        <button class="back-btn" onclick="showMainMenu()">Назад</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

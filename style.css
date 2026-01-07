@@ -1,3 +1,26 @@
+/* --- Решение ошибок Lighthouse --- */
+/* Решение NO_FCP в Lighthouse */
+#fcp-marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1px;
+  color: transparent;
+}
+
+/* Решение NO_LCP в Lighthouse */
+#lcp-title {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+
+
 /* --- СБРОС СТИЛЕЙ --- */
 
 /* Сброс стандартных отступов и размеров */
@@ -850,17 +873,4 @@ tr:hover {
 
 .box.shake-red {
   animation: shakeRed 0.4s ease; /* Применение анимации тряски и красного свечения */
-}
-
-
-
-
-
-/* Решение NO_FCP в Lighthouse */
-#fcp-marker {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 1px;
-  color: transparent;
 }

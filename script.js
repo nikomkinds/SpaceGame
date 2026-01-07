@@ -528,8 +528,9 @@ document.addEventListener('DOMContentLoaded', function() {
   createStars();
   // Показываем страницу ввода имени
   showPage('authPage');
-  // Удаляем fcp-marker
+  // Удаляем fcp-marker и lcp-title
   document.getElementById('fcp-marker')?.remove();
+  document.getElementById('lcp-title')?.remove();
 });
 
 // Добавляем обработчики событий для клавиатуры на странице авторизации
